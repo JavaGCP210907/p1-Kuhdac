@@ -24,5 +24,22 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:28.2-jre'
 
-    // Find yourself a JUnit dependency for testing!!! (hint, check HelloGradle)
+  	// JUnit Dependency
+  	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    
+    // Javalin Depdendency
+    compile group: 'io.javalin', name: 'javalin', version: '3.13.3'
+    compile "org.slf4j:slf4j-simple:1.7.30"
+    
+    // Gson Dependency
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    
+    // PostgreSQL Dependency
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+    compile group: 'com.auth0', name: 'java-jwt', version: '3.12.1'
+    
+    // Hibernate Dependency
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.5.7.Final'
 }
