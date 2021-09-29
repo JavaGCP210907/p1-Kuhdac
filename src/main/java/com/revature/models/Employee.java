@@ -1,10 +1,10 @@
 package com.revature.models;
 
-public class Employee {
+public class Employee extends BaseEntity{
 	
-	private int employeeId;
-	private String fName;
-	private String lName;
-	private String department;
+	private boolean isManager = false;
+	
+	
+	// Class Methods Below
 	
 }

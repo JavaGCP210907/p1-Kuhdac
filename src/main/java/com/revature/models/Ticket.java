@@ -2,7 +2,7 @@ package com.revature.models;
 
 public class Ticket {
 	
-	private int ticketNum;
+	private int ticketId;
 	private int employee;
 	private int transAmnt;
 	private String transDate;
