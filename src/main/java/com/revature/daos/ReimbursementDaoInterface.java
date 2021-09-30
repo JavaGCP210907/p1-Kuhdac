@@ -15,9 +15,13 @@ public interface ReimbursementDaoInterface {
 	
 	public List<Reimbursement> getReimbursementsByDate(Date start, Date end);
 	
+	public List<Reimbursement> getReimbursementsByType(int type_id);
+	
 	public List<Reimbursement> getReimbursementsByStatus(int status_id);
 	
 	public List<Reimbursement> getReimbursementsByAuthor(int author_id);
+	
+	public List<Reimbursement> getReimbursementsByResolver(int resolver_id);
 	
 	public void createReimbursement(double amount, Date sDate, Date rDate, String description,
 									int author, int resolver, int status, int type, byte[] receipt);

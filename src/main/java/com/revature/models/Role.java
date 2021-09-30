@@ -1,12 +1,17 @@
 package com.revature.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "roles")
 public class Role {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int role_id;
 	private String role;
 	
@@ -16,7 +21,6 @@ public class Role {
 		super();
 
 	}
-
 
 
 	public Role(int role_id, String role) {

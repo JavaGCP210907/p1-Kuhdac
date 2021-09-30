@@ -10,7 +10,7 @@
   <property name="hibernate.default_schema">ers</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
-  <property name="hbm2ddl.auto">create</property>
+  <property name="hbm2ddl.auto">update</property>
   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
   <mapping class="com.revature.models.Role"/>
   <mapping class="com.revature.models.User"/>
