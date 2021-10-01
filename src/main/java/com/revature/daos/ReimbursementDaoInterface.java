@@ -23,8 +23,7 @@ public interface ReimbursementDaoInterface {
 	
 	public List<Reimbursement> getReimbursementsByResolver(int resolver_id);
 	
-	public void createReimbursement(double amount, Date sDate, Date rDate, String description,
-									int author, int resolver, int status, int type, byte[] receipt);
+	public void createReimbursement(Reimbursement reimbursement);
 	
 	public void updateReimbursement(double amount, Date rDate, String description, int status, int type, byte[] receipt);
 

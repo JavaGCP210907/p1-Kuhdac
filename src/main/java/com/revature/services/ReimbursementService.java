@@ -12,5 +12,9 @@ public class ReimbursementService {
 	public List<Reimbursement> getReimbursements() {
 		return rDao.getAllReimbursements();
 	}
+	
+	public void createReimbursements(Reimbursement reimbursement) {
+		rDao.createReimbursement(reimbursement);
+	}
 
 }

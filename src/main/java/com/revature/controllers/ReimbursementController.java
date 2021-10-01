@@ -25,9 +25,30 @@ public class ReimbursementController {
 			ctx.result(JSONReimbursements);
 			
 			ctx.status(200);
-			
+		
 		} else {
 			ctx.status(403);
+			
+			ctx.result("Something is up");
+		}
+	};
+	
+	public Handler createReimbursementHandler = (ctx) -> {
+		
+		if (ctx.req.getSession(false) != null) {
+			
+			String body = ctx.body();
+			
+			Gson gson = new Gson();
+			
+			Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
+			
+			rs.createReimbursements(reimbursement);
+			
+			ctx.status(200);
+			
+			ctx.result("Reimbursement Created");
+			
 		}
 	};
 

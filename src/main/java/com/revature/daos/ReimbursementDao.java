@@ -47,8 +47,14 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 
 	@Override
 	public List<Reimbursement> getReimbursementsByStatus(int status_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Session ses = HibernateUtil.getSession();
+		
+		List<Reimbursement> rList = ses.createQuery("FROM Reimbursement R WHERE R.salary = " + status_id).list();
+		
+		HibernateUtil.closeSession();
+		
+		return rList;
 	}
 
 	@Override
@@ -64,9 +70,13 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 	}
 
 	@Override
-	public void createReimbursement(double amount, Date sDate, Date rDate, String description, int author, int resolver,
-			int status, int type, byte[] receipt) {
-		// TODO Auto-generated method stub
+	public void createReimbursement(Reimbursement reimbursement) {
+		
+		Session ses = HibernateUtil.getSession();
+		
+		ses.save(reimbursement);
+		
+		HibernateUtil.closeSession();
 
 	}
 
