@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.revature.controllers.LoginController;
 import com.revature.controllers.ReimbursementController;
 import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
@@ -17,25 +18,23 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		
-		
 						
 		ReimbursementController rc = new ReimbursementController();
+		
+		LoginController lc = new LoginController();
 						
 		Javalin app = Javalin.create(
 				config ->{ config.enableCorsForAllOrigins();
 				}
 				).start(8090);
 		
+		app.post("/login", lc.loginHandler);
+		
 		app.get("/reimbursements", rc.getAllReimbursementsHandler);
 		
 		app.post("/reimbursements", rc.createReimbursementHandler);
 		
-		ReimbursementDao rDao= new ReimbursementDao();
 		
-		List<Reimbursement> reimb = rDao.getAllReimbursements();
-		
-		for (Reimbursement r: reimb) {
-			System.out.println("Amount: " + r.getReimb_Amnt() + "Date Submitted: " + r.getDateSubmitted());
 			
 		}
 		
@@ -47,4 +46,3 @@ public class Launcher {
 				
 	}
 
-}
