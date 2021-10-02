@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.revature.models.Reimbursement;
+import com.revature.models.Status;
 import com.revature.utils.HibernateUtil;
 
 public class ReimbursementDao implements ReimbursementDaoInterface {
@@ -46,11 +47,11 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 	}
 
 	@Override
-	public List<Reimbursement> getReimbursementsByStatus(int status_id) {
+	public List<Reimbursement> getReimbursementsByStatus(Status status_id) {
 
 		Session ses = HibernateUtil.getSession();
 		
-		List<Reimbursement> rList = ses.createQuery("FROM Reimbursement R WHERE R.salary = " + status_id).list();
+		List<Reimbursement> rList = ses.createQuery("FROM Reimbursement R WHERE R.status = " + status_id.getStatus_id()).list();
 		
 		HibernateUtil.closeSession();
 		

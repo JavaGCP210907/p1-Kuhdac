@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.revature.models.Reimbursement;
+import com.revature.models.Status;
 
 public interface ReimbursementDaoInterface {
 	
@@ -17,7 +18,7 @@ public interface ReimbursementDaoInterface {
 	
 	public List<Reimbursement> getReimbursementsByType(int type_id);
 	
-	public List<Reimbursement> getReimbursementsByStatus(int status_id);
+	public List<Reimbursement> getReimbursementsByStatus(Status status_id);
 	
 	public List<Reimbursement> getReimbursementsByAuthor(int author_id);
 	

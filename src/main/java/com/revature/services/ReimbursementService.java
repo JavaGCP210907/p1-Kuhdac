@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
+import com.revature.models.Status;
 
 public class ReimbursementService {
 	
@@ -15,6 +16,10 @@ public class ReimbursementService {
 	
 	public void createReimbursements(Reimbursement reimbursement) {
 		rDao.createReimbursement(reimbursement);
+	}
+	
+	public List<Reimbursement> getReimbursementByStatus(Status status){
+		return rDao.getReimbursementsByStatus(status);
 	}
 
 }
