@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
+import com.revature.models.User;
 
 public interface ReimbursementDaoInterface {
 	
@@ -20,12 +21,12 @@ public interface ReimbursementDaoInterface {
 	
 	public List<Reimbursement> getReimbursementsByStatus(Status status_id);
 	
-	public List<Reimbursement> getReimbursementsByAuthor(int author_id);
+	public List<Reimbursement> getReimbursementsByAuthor(User user);
 	
 	public List<Reimbursement> getReimbursementsByResolver(int resolver_id);
 	
 	public void createReimbursement(Reimbursement reimbursement);
 	
-	public void updateReimbursement(double amount, Date rDate, String description, int status, int type, byte[] receipt);
+	public void updateReimbursement(Reimbursement reimbursement);
 
 }

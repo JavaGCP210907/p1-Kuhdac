@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
+import com.revature.models.User;
 import com.revature.services.ReimbursementService;
 
 import io.javalin.http.Handler;
@@ -84,6 +85,55 @@ public class ReimbursementController {
 		}
 		
 		
+	};
+	
+	public Handler getReimbursementByUser = (ctx) -> {
+		
+		if (ctx.req.getSession(false) != null) {
+			
+			String body = ctx.body();
+			
+			Gson gson = new Gson();
+			
+			User user = gson.fromJson(body, User.class);
+			
+			List<Reimbursement> reimByAuthor = rs.getReimbursementsByAuthor(user);
+			
+			String JSONReimByAuthor = gson.toJson(reimByAuthor);
+			
+			ctx.result(JSONReimByAuthor);
+			
+			ctx.status(200);
+			
+		} else {
+			
+			ctx.status(403);
+			
+			ctx.result("Unable to get Reimbursement by User");
+		}
+	};
+	
+	public Handler updateReimbursementStatus = (ctx) ->{
+		
+		if (ctx.req.getSession(false) != null) {
+			
+			String body = ctx.body();
+			
+			Gson gson = new Gson();
+			
+			Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
+			
+			rs.updateReimbursementByStatus(reimbursement);
+			
+			ctx.result("Status Updated");
+			
+			ctx.status(200);
+		} else {
+			
+			ctx.status(403);
+			
+			ctx.result("Unable to update status");
+		}
 	};
 
 }

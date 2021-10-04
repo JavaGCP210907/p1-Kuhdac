@@ -8,7 +8,7 @@
 </head>
 <body>
   <section id="headerDiv">
-    <div class="container-fluid col-md-12 border-bottom">
+    <div class="container-fluid col-md-12 border-bottom bg-light bg-gradient">
       <h1 class="display-6 text-end">ERS</h1>
       <p class="lead text-end">Employee Management System</p>
     </div>
@@ -37,25 +37,18 @@
               <th scope="row" colspan="10" class="text-center table-warning h2 text-muted border-start-0 border-end-0 border-3">Requests</th>
             </tr>
             <tr>
-              <th>Ticket #</th>
+              <th>#</th>
               <th>Amount</th>
-              <th>Submitter</th>
+              <th>Data Submitted</th>
+              <th>Date Resolved</th>
+              <th>Description</th>
+              <th>Author</th>
+              <th>Resolver</th>
               <th>Status</th>
+              <th>Type</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>  
-              <td>1</th>
-              <td>999</th>
-              <td>Joe Test</th>
-              <td>Pending</th>
-            </tr>
-            <tr>
-              <th>2</th>
-              <th>999</th>
-              <th>Jane Test</th>
-              <th>Approved</th>
-            </tr>
+          <tbody id="reimbursementBody">
           </tbody>
         </table>
       </div>
@@ -63,5 +56,6 @@
   </section>
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="index.js"></script>
 </body>
 </html>

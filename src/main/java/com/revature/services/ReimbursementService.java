@@ -5,6 +5,7 @@ import java.util.List;
 import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
+import com.revature.models.User;
 
 public class ReimbursementService {
 	
@@ -20,6 +21,14 @@ public class ReimbursementService {
 	
 	public List<Reimbursement> getReimbursementByStatus(Status status){
 		return rDao.getReimbursementsByStatus(status);
+	}
+	
+	public List<Reimbursement> getReimbursementsByAuthor(User user){
+		return rDao.getReimbursementsByAuthor(user);
+	}
+	
+	public void updateReimbursementByStatus(Reimbursement reimbursement) {
+		rDao.updateReimbursement(reimbursement);
 	}
 
 }
