@@ -32,23 +32,6 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 		return null;
 	}
 
-	@Override
-	public List<Reimbursement> getReimbursementsByAmount(double min, double max) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Reimbursement> getReimbursementsByDate(Date start, Date end) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Reimbursement> getReimbursementsByType(int type_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Reimbursement> getReimbursementsByStatus(Status status_id) {
@@ -72,12 +55,6 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 		HibernateUtil.closeSession();
 		
 		return rList;
-	}
-
-	@Override
-	public List<Reimbursement> getReimbursementsByResolver(int resolver_id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -107,6 +84,24 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 		HibernateUtil.closeSession();
 		
 
+	}
+
+	@Override
+	public List<Reimbursement> getActiveUserReq(User user) {
+		
+		Session ses = HibernateUtil.getSession();
+		
+		List <Reimbursement> rList = ses.createQuery("SELECT * FROM Reimbursement WHERE status_id = 3 AND author = " + user.getUser_id()).list();
+		
+		HibernateUtil.closeSession();
+		
+		return rList;
+	}
+
+	@Override
+	public List<Reimbursement> getInactiveUserReq(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

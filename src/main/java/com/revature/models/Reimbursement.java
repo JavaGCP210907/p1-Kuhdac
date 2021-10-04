@@ -36,11 +36,11 @@ public class Reimbursement {
 	private String description;
 	
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "author")
+	@JoinColumn(name = "user_id")
 	private User author;
 	
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "resolver")
+	@JoinColumn(name = "")
 	private User resolver;
 	
 	@JoinColumn(name = "status_id")

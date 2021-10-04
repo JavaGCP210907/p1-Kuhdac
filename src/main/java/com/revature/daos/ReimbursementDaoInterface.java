@@ -13,17 +13,13 @@ public interface ReimbursementDaoInterface {
 	
 	public Reimbursement getReimbursementById(int id);
 	
-	public List<Reimbursement> getReimbursementsByAmount(double min, double max);
+	public List<Reimbursement> getActiveUserReq (User user);
 	
-	public List<Reimbursement> getReimbursementsByDate(Date start, Date end);
-	
-	public List<Reimbursement> getReimbursementsByType(int type_id);
+	public List<Reimbursement> getInactiveUserReq (User user);
 	
 	public List<Reimbursement> getReimbursementsByStatus(Status status_id);
 	
 	public List<Reimbursement> getReimbursementsByAuthor(User user);
-	
-	public List<Reimbursement> getReimbursementsByResolver(int resolver_id);
 	
 	public void createReimbursement(Reimbursement reimbursement);
 	

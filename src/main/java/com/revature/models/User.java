@@ -38,7 +38,7 @@ public class User {
 	
 	@ManyToOne(targetEntity = Role.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id")
-	private int role_id;
+	private Role role;
 	
 	
 	public User() {
@@ -46,19 +46,7 @@ public class User {
 	}
 
 
-	public User(String username, String password, String f_name, String l_name, String email, int role_id) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.f_name = f_name;
-		this.l_name = l_name;
-		this.email = email;
-		this.role_id = role_id;
-	}
-
-
-	public User(int user_id, String username, String password, String f_name, String l_name, String email,
-			int role_id) {
+	public User(int user_id, String username, String password, String f_name, String l_name, String email, Role role) {
 		super();
 		this.user_id = user_id;
 		this.username = username;
@@ -66,14 +54,7 @@ public class User {
 		this.f_name = f_name;
 		this.l_name = l_name;
 		this.email = email;
-		this.role_id = role_id;
-	}
-
-
-	@Override
-	public String toString() {
-		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", f_name=" + f_name
-				+ ", l_name=" + l_name + ", email=" + email + ", role_id=" + role_id + "]";
+		this.role = role;
 	}
 
 
@@ -137,13 +118,20 @@ public class User {
 	}
 
 
-	public int getRole_id() {
-		return role_id;
+	public Role getRole() {
+		return role;
 	}
 
 
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", username=" + username + ", password=" + password + ", f_name=" + f_name
+				+ ", l_name=" + l_name + ", email=" + email + ", role=" + role + "]";
 	}
 
 
@@ -155,7 +143,7 @@ public class User {
 		result = prime * result + ((f_name == null) ? 0 : f_name.hashCode());
 		result = prime * result + ((l_name == null) ? 0 : l_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + role_id;
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + user_id;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -191,7 +179,10 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role_id != other.role_id)
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
 			return false;
 		if (user_id != other.user_id)
 			return false;
@@ -202,9 +193,8 @@ public class User {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
+	
+	
+	
 }

@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import com.revature.controllers.LoginController;
 import com.revature.controllers.ReimbursementController;
 import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
+import com.revature.utils.HibernateUtil;
 
 import io.javalin.Javalin;
 
