@@ -19,7 +19,6 @@ import io.javalin.Javalin;
 public class Launcher {
 	
 	public static void main(String[] args) {
-		
 						
 		ReimbursementController rc = new ReimbursementController();
 		

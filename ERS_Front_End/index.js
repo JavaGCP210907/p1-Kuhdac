@@ -2,6 +2,33 @@ const url = "http://localhost:8090/"
 
 window.addEventListener('load', populateAllFunc)
 
+document.getElementById("submitRequest").addEventListener("click", newRequestFunc)
+
+async function newRequestFunc(){
+
+    let reqAmount = document.getElementById("reqAmnt").value
+    let reqType = document.getElementById("reqType").value
+    let reqDescription = document.getElementById("reqDescription").value
+
+    request = {
+        reimb_Amnt:reqAmount,
+        type:{reqType},
+        description:reqDescription
+    }
+
+    let response = await fetch(url + "reimbursements", {
+        method:"POST",
+        body:JSON.stringify(request),
+        credentials:"include"
+    })
+
+    console.log(response.status)
+
+    if (response.status === 200){
+        console.log("Request Submitted")
+    }
+
+}
 
 async function populateAllFunc(){
 
@@ -28,7 +55,11 @@ async function populateAllFunc(){
             row.appendChild(cell3);
 
             let cell4 = document.createElement("td")
-            cell4.innerHTML = reimbursement.dateResolved;
+            if (reimbursement.dateResolved === undefined){
+                cell4.innerHTML = "-"
+            }else {
+                cell4.innerHTML = reimbursement.dateResolved; 
+            }
             row.appendChild(cell4);
 
             let cell5 = document.createElement("td")
@@ -36,11 +67,11 @@ async function populateAllFunc(){
             row.appendChild(cell5);
 
             let cell6 = document.createElement("td")
-            cell6.innerHTML = reimbursement.author;
+            cell6.innerHTML = reimbursement.author.username;
             row.appendChild(cell6);
 
             let cell7 = document.createElement("td")
-            cell7.innerHTML = reimbursement.resolver;
+            cell7.innerHTML = reimbursement.resolver.username;
             row.appendChild(cell7);
 
             let cell8 = document.createElement("td")

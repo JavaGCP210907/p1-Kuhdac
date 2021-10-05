@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.revature.models.Reimbursement;
 import com.revature.models.Status;
 import com.revature.models.User;
@@ -42,7 +43,7 @@ public class ReimbursementController {
 			
 			String body = ctx.body();
 			
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			
 			Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
 			
