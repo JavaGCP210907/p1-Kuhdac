@@ -6,11 +6,7 @@ import com.revature.models.User;
 
 public interface UserDaoInterface {
 	
-	public List<User> getUsers();
-	
-	public User getUserById(int id);
-	
-	public List<User> getUsersByRoleId(int role_id);
+	public boolean verifyUserLogin(String username, String password);
 	
 
 }

@@ -23,7 +23,7 @@ async function loginFunc(){
     console.log(response.status)
 
     if(response.status === 200){
-        window.location.replace("http://127.0.0.1:5500/index.html");
+        window.location.replace("http://127.0.0.1:5501/index.html");
     } else{
         document.getElementById("login-row").innerText="Login failed! Do better."
 
