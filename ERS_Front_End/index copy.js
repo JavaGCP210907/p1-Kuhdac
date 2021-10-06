@@ -1,5 +1,7 @@
 const url = "http://localhost:8090/"
 
+console.log(currentUser);
+
 window.addEventListener('load', populateAllFunc)
 
 document.getElementById("submitRequest").addEventListener("click", newRequestFunc)

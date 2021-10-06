@@ -14,7 +14,8 @@ public class JwtUtil {
         String token = JWT.create()
                 .withClaim("username", username) 
                 .withClaim("password", password)
-                .sign(algorithm); 
+                .sign(algorithm);
+        		
 
         return  token;
     }

@@ -1,8 +1,13 @@
 const url = "http://localhost:8090/"
+const user = localStorage["currentUser"];
+
+console.log(user);
 
 window.addEventListener('load', populateAllFunc)
 
 document.getElementById("submitRequest").addEventListener("click", newRequestFunc)
+
+console.log(url);
 
 async function newRequestFunc(){
 

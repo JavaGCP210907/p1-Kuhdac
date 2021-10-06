@@ -1,4 +1,4 @@
-const url = "http://localhost:8090/"
+const url = "http://localhost:8090/";
 
 
 // Login functionality
@@ -21,8 +21,10 @@ async function loginFunc(){
     })
 
     console.log(response.status)
+    console.log(response.text)
 
     if(response.status === 200){
+        localStorage["currentUser"] = usern;
         window.location.replace("http://127.0.0.1:5501/index.html");
     } else{
         document.getElementById("login-row").innerText="Login failed! Do better."
