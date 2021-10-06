@@ -1,94 +1,33 @@
-const url = "http://localhost:8090/"
-const user = localStorage["currentUser"];
+const url = "http://localhost:8090/";
 
-console.log(user);
 
-window.addEventListener('load', populateAllFunc)
+// Login functionality
+document.getElementById("loginBtn").addEventListener("click", loginFunc);
 
-document.getElementById("submitRequest").addEventListener("click", newRequestFunc)
+async function loginFunc(){
 
-console.log(url);
+    let usern = document.getElementById("username").value;
+    let userp = document.getElementById("password").value;
 
-async function newRequestFunc(){
-
-    let reqAmount = document.getElementById("reqAmnt").value
-    let reqType = document.getElementById("reqType").value
-    let reqDescription = document.getElementById("reqDescription").value
-
-    request = {
-        reimb_Amnt:reqAmount,
-        type:{reqType},
-        description:reqDescription
+    let user = {
+        username:usern,
+        password:userp
     }
 
-    let response = await fetch(url + "reimbursements", {
-        method:"POST",
-        body:JSON.stringify(request),
-        credentials:"include"
+    let response = await fetch(url + "login", {
+        method: "POST",
+        body: JSON.stringify(user),
+        credentials: "include"
     })
 
     console.log(response.status)
+    console.log(response.text)
 
-    if (response.status === 200){
-        console.log("Request Submitted")
+    if(response.status === 200){
+        localStorage["currentUser"] = usern;
+        window.location.replace("http://127.0.0.1:5501/employee.html");
+    } else{
+        document.getElementById("login-row").innerText="Login failed! Do better."
+
     }
-
-}
-
-async function populateAllFunc(){
-
-    let response = await fetch(url + "reimbursements", {credentials: "include"});
-
-    if (response.status === 200) {
-        let data = await response.json();
-        console.log(response.status);
-
-        for(let reimbursement of data){
-            
-            let row = document.createElement("tr")
-
-            let cell = document.createElement("td")
-            cell.innerHTML = reimbursement.reimb_Id;
-            row.appendChild(cell);
-
-            let cell2 = document.createElement("td")
-            cell2.innerHTML = reimbursement.reimb_Amnt;
-            row.appendChild(cell2);
-
-            let cell3 = document.createElement("td")
-            cell3.innerHTML = reimbursement.dateSubmitted;
-            row.appendChild(cell3);
-
-            let cell4 = document.createElement("td")
-            if (reimbursement.dateResolved === undefined){
-                cell4.innerHTML = "-"
-            }else {
-                cell4.innerHTML = reimbursement.dateResolved; 
-            }
-            row.appendChild(cell4);
-
-            let cell5 = document.createElement("td")
-            cell5.innerHTML = reimbursement.description;
-            row.appendChild(cell5);
-
-            let cell6 = document.createElement("td")
-            cell6.innerHTML = reimbursement.author.username;
-            row.appendChild(cell6);
-
-            let cell7 = document.createElement("td")
-            cell7.innerHTML = reimbursement.resolver.username;
-            row.appendChild(cell7);
-
-            let cell8 = document.createElement("td")
-            cell8.innerHTML = reimbursement.status.status;
-            row.appendChild(cell8);
-
-            let cell9 = document.createElement("td")
-            cell9.innerHTML = reimbursement.type.type;
-            row.appendChild(cell9);
-
-            document.getElementById("reimbursementBody").appendChild(row);
-        }
-    }
-
 }

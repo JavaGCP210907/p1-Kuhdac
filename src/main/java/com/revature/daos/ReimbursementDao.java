@@ -50,7 +50,10 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 		
 		Session ses = HibernateUtil.getSession();
 		
-		List<Reimbursement> rList = ses.createQuery("FROM Reimbursement R WHERE R.author = " + user.getUser_id()).list();
+		Query query = ses.createQuery("FROM Reimbursement R WHERE R.author.username = :username");
+		query.setParameter("username", user.getUsername());
+		
+		List<Reimbursement> rList = query.getResultList();
 		
 		HibernateUtil.closeSession();
 		

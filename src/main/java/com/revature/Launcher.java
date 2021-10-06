@@ -36,6 +36,8 @@ public class Launcher {
 		app.post("/reimbursements", rc.createReimbursementHandler);
 		
 		app.post("/status", rc.getReimbursementsByStatus);
+		
+		app.post("/user", rc.getReimbursementByUser);
 			
 		}
 		
