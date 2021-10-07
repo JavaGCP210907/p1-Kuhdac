@@ -8,5 +8,7 @@ public interface UserDaoInterface {
 	
 	public boolean verifyUserLogin(String username, String password);
 	
+	public boolean isManager(User user);
+	
 
 }

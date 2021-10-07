@@ -31,4 +31,25 @@ public class UserDao implements UserDaoInterface {
 		return false;
 		
 	}
+
+	@Override
+	public boolean isManager(User user) {
+		
+		Session ses = HibernateUtil.getSession();
+		
+		String hql = "FROM User U WHERE U.username = :username AND U.role.role_id = :role";
+		
+		Query query = ses.createQuery(hql);
+		query.setParameter("username", user.getUsername());
+		query.setParameter("role", 1);
+		
+		if (query.uniqueResult() != null) {
+			
+			HibernateUtil.closeSession();
+			return true;
+		}
+		
+		HibernateUtil.closeSession();
+		return false;
+	}
 }
