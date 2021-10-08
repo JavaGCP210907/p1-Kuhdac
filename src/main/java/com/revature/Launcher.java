@@ -20,6 +20,9 @@ import io.javalin.Javalin;
 public class Launcher {
 	
 	public static void main(String[] args) {
+		
+		HibernateUtil.getSession();
+		HibernateUtil.closeSession();
 						
 		ReimbursementController rc = new ReimbursementController();
 		
@@ -42,7 +45,7 @@ public class Launcher {
 		
 		app.post("/user", rc.getReimbursementByUser);
 		
-		app.post("/role", uc.isManagerHandler);
+		app.post("/role", uc.getUserByUsername);
 			
 		}
 		

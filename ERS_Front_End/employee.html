@@ -10,20 +10,18 @@
   <section id="headerDiv">
     <div class="container-fluid col-md-12 border-bottom bg-light bg-gradient">
       <h1 class="display-6 text-end">ERS</h1>
-      <p class="lead text-end">Employee Management System</p>
+      <p class="lead text-end">Employee Reimbursement System</p>
     </div>
   </section>
   <br>
   <section id="statusDiv">
-    <div class="container-fluid col-md-10 border shadow-sm p-3 mb-5 bg-body rounded">
-      <div>
-        <h1 class="text-muted text-center border-bottom">Status Filter</h1>
-      </div>
-      <div class="d-grid gap-5 d-md-flex justify-content-md-center">
-        <button class="btn btn-secondary btn-lg" type="button">Pending</button>
-        <button class="btn btn-primary btn-lg" type="button">Approved/Denied</button>
-      </div>
-    </div>
+    <select class="form-select" id="statSelect" aria-label="Default select example">
+      <option selected>Open this select menu</option>
+      <option value="approved">Approved</option>
+      <option value="denied">Denied</option>
+      <option value="pending">Pending</option>
+    </select>
+    <button class="btn btn-primary" id="status" type="submit">Button</button>
   </section>
   <section id="modalForm">
         <!-- Button trigger modal -->

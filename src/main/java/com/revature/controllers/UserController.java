@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.List;
+
 import com.google.gson.Gson;
 import com.revature.models.Role;
 import com.revature.models.User;
@@ -11,6 +13,29 @@ public class UserController {
 	
 	UserService us = new UserService();
 	Role role = new Role();
+	
+	public Handler getUserByUsername = (ctx) -> {
+		if(ctx.req.getSession(false) != null) {
+			
+			String body = ctx.body();
+			
+			Gson gson = new Gson();
+			
+			String username = gson.fromJson(body, String.class);
+			
+			User user = us.getUserByUsername(username);
+			
+			System.out.println("But not here");
+			
+			String JSONUser = gson.toJson(user);
+			
+			ctx.result(JSONUser);
+			ctx.status(200);
+		} else {
+			ctx.result("Unable to retrieve User");
+			ctx.status(403);
+		}
+	};
 	
 	public Handler isManagerHandler = (ctx) -> {
 		

@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -68,8 +69,8 @@ public class ReimbursementController {
 			
 			Gson gson = new Gson();
 			
-			Status status = gson.fromJson(body, Status.class);
-			
+			Status status = gson.fromJson(body, Status.class);			
+		
 			List <Reimbursement> reimByStatus = rs.getReimbursementByStatus(status);
 			
 			String JSONReimByStatus = gson.toJson(reimByStatus);

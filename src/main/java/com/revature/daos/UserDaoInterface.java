@@ -10,5 +10,7 @@ public interface UserDaoInterface {
 	
 	public boolean isManager(User user);
 	
+	public User getUserByUsername(String username);
+	
 
 }

@@ -20,15 +20,16 @@ async function loginFunc(){
         credentials: "include"
     })
 
+
     console.log(response.status);
 
     if(response.status === 200){
         localStorage["currentUser"] = usern;
-        let role = await isManager();
-        if(role == "1"){
-           window.location.replace("http://127.0.0.1:5501/manager.html")
+        let role_id = await getUser()
+        if(role_id == "1"){
+          window.location.replace("http://127.0.0.1:5501/manager.html")
         } else{
-           window.location.replace("http://127.0.0.1:5501/employee.html")
+         window.location.replace("http://127.0.0.1:5501/employee.html")
         }
         
     } else{
@@ -37,11 +38,10 @@ async function loginFunc(){
     }
 }
 
-async function isManager(){
+async function getUser(){
 
-    let cUser = {
-        username:localStorage["currentUser"]
-    }
+    let cUser = localStorage["currentUser"]
+    
     let response = await fetch(url + "role",{
         method: "POST",
         body: JSON.stringify(cUser),
@@ -51,7 +51,10 @@ async function isManager(){
     if (response.status === 200){
         console.log(response.status);
         let data =  await response.json()
-        return data.role.role_id;
+        localStorage["user_id"] = data.user_id
+        return data.role.role_id
+    } else{
+        console.log("No luck")
     }
     
 

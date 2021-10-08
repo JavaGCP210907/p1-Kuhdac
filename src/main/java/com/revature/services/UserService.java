@@ -10,5 +10,9 @@ public class UserService {
 	public boolean isManager(User user) {
 		return (uDao.isManager(user));
 	}
+	
+	public User getUserByUsername(String username){
+		return uDao.getUserByUsername(username);
+	}
 
 }

@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.google.gson.Gson;
 import com.revature.models.LoginDTO;
 import com.revature.services.LoginService;
+import com.revature.services.UserService;
 import com.revature.utils.JwtUtil;
 
 import io.javalin.http.Handler;
@@ -11,6 +12,8 @@ import io.javalin.http.Handler;
 public class LoginController {
 	
 	LoginService ls = new LoginService();
+	
+	UserService us = new UserService();
 	
 	public Handler loginHandler = (ctx) -> {
 		
@@ -20,11 +23,14 @@ public class LoginController {
 		
 		LoginDTO LDTO = gson.fromJson(body, LoginDTO.class);
 		
-		if(ls.login(LDTO.getUsername(), LDTO.getPassword())) {
+		String username = LDTO.getUsername();
+		String password = LDTO.getPassword();
+		
+		if(ls.login(username, password)) {
 			
-			String jwt = JwtUtil.generate(LDTO.getUsername(), LDTO.getPassword());
+			String jwt = JwtUtil.generate(username, password);
 			
-			ctx.req.getSession();
+			ctx.req.getSession().setAttribute(username, us.getUserByUsername(username));
 			
 			ctx.status(200);
 			

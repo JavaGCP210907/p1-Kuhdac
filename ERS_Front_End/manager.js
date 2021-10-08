@@ -76,8 +76,13 @@ async function populateAllFunc(){
             row.appendChild(cell6);
 
             let cell7 = document.createElement("td")
-            cell7.innerHTML = reimbursement.resolver.username;
+            if (reimbursement.resolver === undefined){
+                cell7.innerHTML = "-"
+            }else{
+                cell7.innerHTML = reimbursement.resolver.username;
+            }
             row.appendChild(cell7);
+            
 
             let cell8 = document.createElement("td")
             cell8.innerHTML = reimbursement.status.status;

@@ -2,6 +2,8 @@ package com.revature.daos;
 
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -51,5 +53,21 @@ public class UserDao implements UserDaoInterface {
 		
 		HibernateUtil.closeSession();
 		return false;
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		Session ses = HibernateUtil.getSession();
+		
+		String hql = "FROM User U WHERE U.username = :username";
+		
+		TypedQuery<User> query = ses.createQuery(hql);
+		query.setParameter("username", username);
+		User user = query.getSingleResult();
+		
+		HibernateUtil.closeSession();
+		
+		
+		return user;
 	}
 }
