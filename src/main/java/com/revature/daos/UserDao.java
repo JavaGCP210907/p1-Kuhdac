@@ -65,6 +65,8 @@ public class UserDao implements UserDaoInterface {
 		query.setParameter("username", username);
 		User user = query.getSingleResult();
 		
+	
+		
 		HibernateUtil.closeSession();
 		
 		

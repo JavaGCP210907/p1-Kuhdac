@@ -25,8 +25,6 @@ public class UserController {
 			
 			User user = us.getUserByUsername(username);
 			
-			System.out.println("But not here");
-			
 			String JSONUser = gson.toJson(user);
 			
 			ctx.result(JSONUser);

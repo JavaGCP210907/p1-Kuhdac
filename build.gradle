@@ -33,7 +33,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     
     // Javalin Depdendency
-    compile group: 'io.javalin', name: 'javalin', version: '3.13.3'
+	// https://mvnrepository.com/artifact/io.javalin/javalin
+	implementation group: 'io.javalin', name: 'javalin', version: '4.1.0'
+	
+
     compile "org.slf4j:slf4j-simple:1.7.30"
     
     // Gson Dependency

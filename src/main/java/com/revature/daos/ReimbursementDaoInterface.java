@@ -17,9 +17,9 @@ public interface ReimbursementDaoInterface {
 	
 	public List<Reimbursement> getInactiveUserReq (User user);
 	
-	public List<Reimbursement> getReimbursementsByStatus(Status status_id);
+	public List<Reimbursement> getReimbursementsByStatus(String user_id, String status);
 	
-	public List<Reimbursement> getReimbursementsByAuthor(User user);
+	public List<Reimbursement> getReimbursementsByAuthor(int user_id);
 	
 	public void createReimbursement(Reimbursement reimbursement);
 	

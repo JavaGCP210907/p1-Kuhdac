@@ -52,16 +52,16 @@ async function newRequestFunc(){
 // Retrieves list of reimbursement requests by current user and populates table on load
 async function populateReqFunc(){
 
-    author = {
-        username:usern
-    }
+    
+    let pathName = url +  "reimbursements/" + user_id 
 
-    let response = await fetch(url + "user", {
-        method:"POST",
-        body:JSON.stringify(author),
+
+    let response = await fetch(pathName, {
+        method:"GET",
         credentials: "include"
     })
 
+    
     if (response.status === 200) {
         let data = await response.json();
         console.log(response.status);
@@ -141,21 +141,19 @@ function getTypeId(type){
 async function getReimbursementReqByStatus(){
 
     currentStatus = document.getElementById("statSelect").value
-    console.log(currentStatus)
 
-    let statusInfo = {
-        status:currentStatus
-    }
+    let statusInfo = url + "reimbursements/" + user_id + "/" + currentStatus
+    
+    let response = await fetch(statusInfo, {
 
-    let response = await fetch(url + "status", {
-
-        method:"POST",
-        body:JSON.stringify(statusInfo),
+        method:"GET",
         credentials:"include"
     })
 
-    if (response === 200){
+
+   if (response.status === 200){
         let data = await response.json();
+        document.getElementById('reimbursementBody').innerHTML = '';
 
         for(let reimbursement of data){
             
@@ -208,7 +206,8 @@ async function getReimbursementReqByStatus(){
             document.getElementById("reimbursementBody").appendChild(row);
             console.log(reimbursement.type.type)
         }
-    } else{
-        console.log("Request failed")
-    }
+    } else {
+            console.log("Request failed")
+        }
 }
+

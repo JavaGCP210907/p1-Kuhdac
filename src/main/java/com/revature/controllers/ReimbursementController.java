@@ -3,6 +3,8 @@ package com.revature.controllers;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.hibernate.internal.build.AllowSysOut;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.revature.models.Reimbursement;
@@ -65,19 +67,20 @@ public class ReimbursementController {
 		
 		if (ctx.req.getSession(false) != null) {
 			
-			String body = ctx.body();
-			
 			Gson gson = new Gson();
 			
-			Status status = gson.fromJson(body, Status.class);			
+			String user_id = ctx.pathParam("user_id");
+			
+			String status = ctx.pathParam("status");
 		
-			List <Reimbursement> reimByStatus = rs.getReimbursementByStatus(status);
+			List <Reimbursement> reimByStatus = rs.getReimbursementByStatus(user_id, status);
 			
 			String JSONReimByStatus = gson.toJson(reimByStatus);
 			
 			ctx.result(JSONReimByStatus);
 			
 			ctx.status(200);
+			
 			
 		} else {
 			
@@ -93,13 +96,13 @@ public class ReimbursementController {
 		
 		if (ctx.req.getSession(false) != null) {
 			
-			String body = ctx.body();
-			
 			Gson gson = new Gson();
 			
-			User user = gson.fromJson(body, User.class);
+			Integer user_id = Integer.parseInt(ctx.pathParam("user_id"));
 			
-			List<Reimbursement> reimByAuthor = rs.getReimbursementsByAuthor(user);
+			System.out.println(user_id);
+			
+			List<Reimbursement> reimByAuthor = rs.getReimbursementsByAuthor(user_id);
 			
 			String JSONReimByAuthor = gson.toJson(reimByAuthor);
 			

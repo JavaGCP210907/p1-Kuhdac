@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -34,11 +35,16 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 
 
 	@Override
-	public List<Reimbursement> getReimbursementsByStatus(Status status_id) {
+	public List<Reimbursement> getReimbursementsByStatus(String user_id, String status) {
 
 		Session ses = HibernateUtil.getSession();
 		
-		List<Reimbursement> rList = ses.createQuery("FROM Reimbursement R WHERE R.status = " + status_id.getStatus_id()).list();
+		String hql = "FROM Reimbursement R WHERE R.status.status = :status AND R.author.user_id = " +  user_id;
+		
+		TypedQuery<Reimbursement> query = ses.createQuery(hql);
+		query.setParameter("status", status);
+		
+		List<Reimbursement> rList = query.getResultList();
 		
 		HibernateUtil.closeSession();
 		
@@ -46,12 +52,12 @@ public class ReimbursementDao implements ReimbursementDaoInterface {
 	}
 
 	@Override
-	public List<Reimbursement> getReimbursementsByAuthor(User user) {
+	public List<Reimbursement> getReimbursementsByAuthor(int user_id) {
 		
 		Session ses = HibernateUtil.getSession();
 		
-		Query query = ses.createQuery("FROM Reimbursement R WHERE R.author.username = :username");
-		query.setParameter("username", user.getUsername());
+		Query query = ses.createQuery("FROM Reimbursement R WHERE R.author.user_id = :user_id");
+		query.setParameter("user_id", user_id);
 		
 		List<Reimbursement> rList = query.getResultList();
 		

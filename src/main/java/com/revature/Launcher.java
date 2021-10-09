@@ -16,6 +16,8 @@ import com.revature.models.Reimbursement;
 import com.revature.utils.HibernateUtil;
 
 import io.javalin.Javalin;
+import static io.javalin.apibuilder.ApiBuilder.*;
+
 
 public class Launcher {
 	
@@ -35,17 +37,33 @@ public class Launcher {
 				}
 				).start(8090);
 		
+		app.routes(() -> {
+		    path("reimbursements", () -> {
+		    	get(rc.getAllReimbursementsHandler);
+		        patch(rc.updateReimbursementStatus);
+		        post(rc.getReimbursementsByStatus);
+		        path("{user_id}", (() -> {                        
+		            get(rc.getReimbursementByUser);                
+		            post(rc.createReimbursementHandler);
+		            path("{status}", () -> {
+		            	get(rc.getReimbursementsByStatus);
+		            });
+		        }));                                              
+		    });
+		  
+		});	
+		
 		app.post("/login", lc.loginHandler);
-		
-		app.get("/reimbursements", rc.getAllReimbursementsHandler);
-		
-		app.post("/reimbursements", rc.createReimbursementHandler);
-		
-		app.post("/status", rc.getReimbursementsByStatus);
-		
-		app.post("/user", rc.getReimbursementByUser);
-		
-		app.post("/role", uc.getUserByUsername);
+//		
+//		app.get("/reimbursements", rc.getAllReimbursementsHandler);
+//		
+//		app.post("/reimbursements", rc.createReimbursementHandler);
+//		
+//		app.post("/status", rc.getReimbursementsByStatus);
+//		
+//		app.post("/user", rc.getReimbursementByUser);
+//		
+//		app.post("/role", uc.getUserByUsername);
 			
 		}
 		

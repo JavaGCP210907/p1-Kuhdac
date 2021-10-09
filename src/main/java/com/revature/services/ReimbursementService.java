@@ -19,12 +19,12 @@ public class ReimbursementService {
 		rDao.createReimbursement(reimbursement);
 	}
 	
-	public List<Reimbursement> getReimbursementByStatus(Status status){
-		return rDao.getReimbursementsByStatus(status);
+	public List<Reimbursement> getReimbursementByStatus(String user_id, String status){
+		return rDao.getReimbursementsByStatus(user_id, status);
 	}
 	
-	public List<Reimbursement> getReimbursementsByAuthor(User user){
-		return rDao.getReimbursementsByAuthor(user);
+	public List<Reimbursement> getReimbursementsByAuthor(int user_id){
+		return rDao.getReimbursementsByAuthor(user_id);
 	}
 	
 	public void updateReimbursementByStatus(Reimbursement reimbursement) {
