@@ -26,10 +26,11 @@ async function loginFunc(){
     if(response.status === 200){
         localStorage["currentUser"] = usern;
         let role_id = await getUser()
+        console.log(role_id)
         if(role_id == "1"){
-          window.location.replace("http://127.0.0.1:5501/manager.html")
+         window.location.replace("http://127.0.0.1:5501/manager.html")
         } else{
-         window.location.replace("http://127.0.0.1:5501/employee.html")
+        window.location.replace("http://127.0.0.1:5501/employee.html")
         }
         
     } else{

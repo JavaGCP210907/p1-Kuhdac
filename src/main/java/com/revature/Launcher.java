@@ -63,7 +63,7 @@ public class Launcher {
 //		
 //		app.post("/user", rc.getReimbursementByUser);
 //		
-//		app.post("/role", uc.getUserByUsername);
+		app.post("/role", uc.getUserByUsername);
 			
 		}
 		

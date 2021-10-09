@@ -42,10 +42,15 @@ async function populateAllFunc(){
     if (response.status === 200) {
         let data = await response.json();
         console.log(response.status);
-
         for(let reimbursement of data){
             
+            r = "r" + String(reimbursement.reimb_Id)
+            console.log(r)
+
             let row = document.createElement("tr")
+            row.setAttribute("type", "button")
+            row.setAttribute("data-bs-toggle", "collapse")
+            row.setAttribute("data-bs-target", "#" + r)
 
             let cell = document.createElement("td")
             cell.innerHTML = reimbursement.reimb_Id;
@@ -82,7 +87,6 @@ async function populateAllFunc(){
                 cell7.innerHTML = reimbursement.resolver.username;
             }
             row.appendChild(cell7);
-            
 
             let cell8 = document.createElement("td")
             cell8.innerHTML = reimbursement.status.status;
@@ -93,6 +97,19 @@ async function populateAllFunc(){
             row.appendChild(cell9);
 
             document.getElementById("reimbursementBody").appendChild(row);
+
+            let test1 = document.createElement("div")
+            test1.setAttribute("class", "accordion-collapse collapse")
+            test1.setAttribute("id", r)
+
+            let para = document.createElement("p")
+            para.setAttribute("class", "text-align-center")
+            para.innerHTML = reimbursement.type.type
+            test1.appendChild(para)
+
+            document.getElementById("reimbursementBody").appendChild(test1)
+
+            r++
         }
     }
 
