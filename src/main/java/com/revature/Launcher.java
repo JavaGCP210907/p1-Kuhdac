@@ -41,7 +41,7 @@ public class Launcher {
 		    path("reimbursements", () -> {
 		    	get(rc.getAllReimbursementsHandler);
 		        patch(rc.updateReimbursementStatus);
-		        post(rc.getReimbursementsByStatus);
+		        post(rc.getAllReimbursementsByStatus);
 		        path("{user_id}", (() -> {                        
 		            get(rc.getReimbursementByUser);                
 		            post(rc.createReimbursementHandler);

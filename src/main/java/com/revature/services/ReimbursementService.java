@@ -31,4 +31,7 @@ public class ReimbursementService {
 		rDao.updateReimbursement(reimbursement);
 	}
 
+	public List<Reimbursement> getAllReimbursementsByStatus(int status_id) {
+		return rDao.getAllReimbursementsByStatus(status_id);
+	}
 }

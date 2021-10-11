@@ -4,32 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="employee.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <title>Employee Reimbursement System</title>
 </head>
 <body>
   <section id="headerDiv">
     <div class="container-fluid col-md-12 border-bottom bg-light bg-gradient">
+      <i id="logout" type="button" class="bi p-4 h2 bi-box-arrow-left"></i>
       <h1 class="display-6 text-end">ERS</h1>
       <p class="lead text-end">Employee Reimbursement System</p>
     </div>
-  </section>
-  <br>
-  <section id="statusDiv">
-    <select class="form-select" id="statSelect" aria-label="Default select example">
-      <option selected>Open this select menu</option>
-      <option value="APPROVED">Approved</option>
-      <option value="DENIED">Denied</option>
-      <option value="PENDING">Pending</option>
-    </select>
-    <button class="btn btn-primary" id="status" type="submit">Button</button>
-  </section>
   <section id="modalForm">
-        <!-- Button trigger modal -->
-    <div class="text-center p-3">
-      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Create Request
-      </button>
-    </div>
+    
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -73,24 +60,35 @@
     </div>
   </section>
   <!-- Table -->
+  <br>
+  <br>
+  <br>
+  <br>
   <section id="table">
-    <div class="container-fluid col-md-10">
-      <div class="row justify-content-center">
-        <table id="reimbTable" class="table table-hover border-top border-bottom border-3 table-borderless table-light ">
+    <div class="container-fluid col-md-6">
+      <div class="row">
+        <table id="reimbTable" class="table border-top border-bottom border-3 table-borderless" style="border-collapse:collapse;">
           <thead id="reimbHead">
             <tr>
-              <th scope="row" colspan="10" class="text-center table-warning h2 text-muted border-start-0 border-end-0 border-3">Requests</th>
+              <th scope="row" colspan="1" class="text-center table-secondary h3 border-start-0 border-end-0 border-3">
+                <i class="bi h4 bi-funnel" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterCanvas"></i>
+              </th>
+              <th scope="row" colspan="3" class="text-center table-secondary border-start-0 border-end-0 border-3">
+                <p>
+                  <i type="button" id="refresh" class="bi h1 border bi-arrow-clockwise"></i>
+                </p>
+                <span class="h2 text-center">Requests</span>
+              </th>
+              <th scope="row" colspan="1" class="text-center table-secondary h2 border-start-0 border-end-0 border-3">
+                    <i class="bi h4 bi-plus-square" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+              </th>
             </tr>
-            <tr>
+            <tr class="text-center">
               <th>#</th>
+              <th>Employee</th>
               <th>Amount</th>
-              <th>Data Submitted</th>
-              <th>Date Resolved</th>
-              <th>Description</th>
-              <th>Author</th>
-              <th>Resolver</th>
+              <th>Date Submitted</th>
               <th>Status</th>
-              <th>Type</th>
             </tr>
           </thead>
           <tbody id="reimbursementBody">
@@ -99,6 +97,35 @@
       </div>
     </div>
   </section>
+  <div class="position-fixed bottom-3 end-0 p-3" style="z-index: 11">
+    <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">ERS</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Request succesfully updated
+      </div>
+    </div>
+  </div>
+<!-- Off Canvas -->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="filterCanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Requests Filter</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p class="h3 text-center">Status</p>
+    <select id="statusFilter" class="form-select" aria-label="Default select example">
+      <option selected>Select Status</option>
+      <option value="APPROVED">Approved</option>
+      <option value="DENIED">Denied</option>
+      <option value="PENDING">Pending</option>
+    </select>
+    <button type="button" id="submitFilter" class="btn text-center btn-secondary">Update Table</button>
+  </div>
+</div>
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   <script src="employee.js"></script> 

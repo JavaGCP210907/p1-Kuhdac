@@ -92,6 +92,31 @@ public class ReimbursementController {
 		
 	};
 	
+	public Handler getAllReimbursementsByStatus = (ctx) -> {
+		if (ctx.req.getSession(false) != null) {
+			
+			String body = ctx.body();
+			
+			Gson gson = new Gson();
+			
+			Status status = gson.fromJson(body, Status.class);
+			
+			int status_id = status.getStatus_id();
+			
+			List <Reimbursement> rListStatus = rs.getAllReimbursementsByStatus(status_id);
+			
+			String JSONReimAllStatus = gson.toJson(rListStatus);
+			
+			ctx.result(JSONReimAllStatus);
+			
+			ctx.status(200);
+		} else {
+			ctx.status(403);
+			
+			ctx.result("Unable to retreive reimbursements by status");
+		}
+	};
+	
 	public Handler getReimbursementByUser = (ctx) -> {
 		
 		if (ctx.req.getSession(false) != null) {
@@ -124,7 +149,7 @@ public class ReimbursementController {
 			
 			String body = ctx.body();
 			
-			Gson gson = new Gson();
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			
 			Reimbursement reimbursement = gson.fromJson(body, Reimbursement.class);
 			
@@ -140,5 +165,7 @@ public class ReimbursementController {
 			ctx.result("Unable to update status");
 		}
 	};
+	
+	
 
 }
